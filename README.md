@@ -25,4 +25,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ### Bebeja
-Bebeja mun rek di rubahnya
+npm Bebeja mun rek di rubahnya
