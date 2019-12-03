@@ -1,0 +1,39 @@
+<v-container>
+          <v-card class="mx-auto bgGrad" elevation="0" >
+              <v-card-text class="py-0 px-3">
+                  <v-row class=" white--text bulat-atas">
+                      <v-col> 
+                          <h3 class="title text-left">BJB <small>Deposito</small></h3>
+                      </v-col>
+                      <v-col> 
+                          <div class=" text-center"></div>
+                          <!-- <h4 class=" text-right" id="demo"></h4> -->
+                      </v-col>
+                  </v-row>
+              </v-card-text>
+              <v-card-text class="py-0 px-3">
+                  <v-row class=" bulat-bawah">
+                      <v-col>
+                          <v-btn color="iconAtas--text" outlined  class="cstm-tmbl" fab dark>
+                              <v-icon>mdi-crop-free</v-icon>
+                          </v-btn>
+                      </v-col>
+                      <v-col>
+                          <v-btn color="iconAtas--text" outlined  class="cstm-tmbl" fab dark>
+                              <v-icon>mdi-comment-text-outline</v-icon>
+                          </v-btn>
+                      </v-col>
+                      <v-col>
+                          <v-btn color="iconAtas--text" outlined  class="cstm-tmbl" fab dark>
+                              <v-icon>mdi-apple</v-icon>
+                          </v-btn>
+                      </v-col>
+                      <v-col>
+                          <v-btn color="iconAtas--text" outlined  class="cstm-tmbl" fab dark>
+                              <v-icon>mdi-plus</v-icon>
+                          </v-btn>
+                      </v-col>
+                  </v-row>
+              </v-card-text>
+          </v-card>
+          </v-container>
