@@ -20,9 +20,10 @@ npm run build
 npm run lint
 ```
 
+### Ubah file
+```
+Bebeja mun ek dirubah nya
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-### Bebeja
-npm Bebeja mun rek di rubahnya
