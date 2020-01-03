@@ -1,0 +1,313 @@
+<template>
+    <v-container class="text-center bgUtama">   
+      <Loading v-model="showLoading" ></Loading>
+      
+        <!-- isi body -->
+          <v-container>
+          <v-card elevation="1">
+            <div>
+                <apexchart width="100%" height="100%" type="donut" :options="chartOptions" :series="series"></apexchart>
+            </div>
+          </v-card>
+          </v-container>
+
+          <!-- cari data -->
+          <v-container>
+          <v-card
+              elevation="1"
+          >
+              <v-card-title v-show="!model" class="headline">
+              Cari data
+              </v-card-title>
+              <v-card-title v-show="model" class="headline">
+              Data ditemukan
+              </v-card-title>
+              <v-card-text>
+                <v-autocomplete
+                    v-model="model"
+                    :items="items"
+                    :loading="isLoading"
+                    :search-input.sync="search"
+                    color="secondary"
+                    hide-no-data
+                    hide-selected
+                    item-text="Nama"
+                    item-value="API"
+                    label="Data Nasabah"
+                    placeholder="Ketik untuk cari"
+                    prepend-icon="mdi-database-search"
+                    return-object
+                ></v-autocomplete>
+              </v-card-text>
+              <v-divider></v-divider>
+
+              <v-expand-transition>
+                <v-container>
+                  <v-row >
+                      <v-col v-for="(field, i) in fields"
+                      :key="i"
+                      cols="6"
+                      md="4"
+                      >
+                      <v-text-field
+                          :label="label[i]"
+                          :value="field.value"
+                          required
+                          :readonly="!edit"
+                      ></v-text-field>
+                      </v-col>
+                  </v-row>
+                </v-container>
+              </v-expand-transition>
+
+              <v-card-actions v-show="model">
+                  <!-- <v-spacer></v-spacer> -->
+                  <v-row>
+                    <v-col>
+                      <v-btn
+                          color="primary"
+                          @click="model = null"
+                          small
+                          fab
+                          outlined
+                      >
+                          <v-icon small >mdi-cached</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <!-- buton edit  -->
+                    <!-- <v-col>
+                      <v-btn
+                          title="Refresh"
+                          color="success"
+                          @click="edit = true"
+                          small
+                          v-show="!edit"
+                          fab
+                          outlined
+                      >
+                          <v-icon small>mdi-pencil</v-icon>
+                      </v-btn>
+                      <v-btn
+                          title="Refresh"
+                          color="success white--text"
+                          @click="edit = false"
+                          small
+                          v-show="edit"
+                          fab
+                          outlined
+                      >
+                          <v-icon small>mdi-check-circle</v-icon>
+                      </v-btn>
+                    </v-col> -->
+                    <!-- buton edit  -->
+
+                    <v-col>
+                      <v-btn
+                          color="red"
+                          small
+                          fab
+                          outlined
+                          @click="tidakMinat()"
+                      >
+                          <v-icon small>mdi-account-remove</v-icon>
+                      </v-btn>
+                      <!-- <span style="font-size:9pt;">Tidak Minat</span> -->
+                    </v-col>
+                    <v-col>
+                      <v-btn
+                          color="warning"
+                          small
+                          fab
+                          outlined
+                          @click="kurangMinat()"
+                      >
+                          <v-icon small>mdi-account-alert</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <v-col>
+                      <v-btn
+                          color="success"
+                          small
+                          fab
+                          outlined
+                          @click="berminat()"
+                      >
+                          <v-icon small>mdi-account-check</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+              </v-card-actions>
+              <v-card-actions v-show="!model">
+                  <v-spacer></v-spacer>
+                  <v-btn
+                      class="tmblTambah"
+                      color="gray"
+                      small
+                  >
+                      Tambah
+                      <v-icon small right>mdi-plus-circle</v-icon>
+                  </v-btn>
+              </v-card-actions>
+
+          </v-card>
+          </v-container>
+
+        <!-- isi body -->
+    </v-container>
+</template>
+
+<script>
+import axios from 'axios';//eslint-disable-line
+import Loading from './Loading'
+export default {
+  name: 'Index',
+  data: () => ({
+    showLoading: false,
+    loading: true,
+    edit: false,
+    descriptionLimit: 60,
+    entries: [],
+    isLoading: false,
+    model: null,
+    search: null,
+    data:[],
+    sheet: false,
+    inset: false,
+    hideOverlay: false,
+    form:['hayy','woyy'],
+    menu: [
+      { title: 'Logout', icon: 'mdi-logout' },
+    ],
+    label:[
+      'ID Debitur',
+      'No. CIF',
+      'Nama Debitur',
+      'Alamat',
+      'Tempat & tanggal lahir',
+    ],
+    series: [23, 11],
+    chartOptions: {
+      colors: ['#F4473B', '#FFDF00'],
+      labels: ["Claimed Point", "Idle Point"],
+      dataLabels: {
+        enabled: true,
+        // style: {
+        //     colors: ['#F44336', '#E91E63', '#9C27B0']
+        // }
+      },
+      plotOptions: {
+        pie: {
+          customScale: 1,
+          // size:100
+          donut: {
+              size: '45%',
+          }
+        }
+      },
+      legend: {
+        show: true,
+        position: 'bottom',
+      },
+    }
+  }),
+  components: {
+    Loading
+  },
+  methods:{
+    tidakMinat(){
+      alert("Tidak Berminat")
+    },
+    kurangMinat(){
+      alert("Kurang Berminat")
+    },
+    berminat(){
+      alert("Berminat")
+      this.$router.push('pengajuan')
+    },
+  },
+  computed: {
+    fields () {
+        if (!this.model) return [];
+        return Object.keys(this.model).map(key => {
+          return {
+            key,
+            value: this.model[key] || '-',
+          }
+        })
+      },
+      items () {
+          return this.entries.map(entry => {
+          const Nama = entry.Nama.length > this.descriptionLimit
+            ? entry.Nama.slice(0, this.descriptionLimit) + '...'
+            : entry.Nama +" - "+entry.Tanggal_lahir;
+
+          // const Isi = [entry.CIF, entry.Nama, entry.Alamat, entry.Tanggal_lahir]; //jika ingin dipilih per item
+          
+          return Object.assign({}, entry, { Nama })
+        })
+      },
+    },
+
+    watch: {
+      search () {
+        // Items have already been loaded
+        if (this.items.length > 0) return
+
+        // Items have already been requested
+        if (this.isLoading) return
+
+        this.isLoading = true
+        this.tombol = true
+        
+
+        // Lazily load input items
+        fetch('http://localhost:8000/api/data_nasabah')
+          .then(res => res.json())
+          .then(res => {
+              const { data_nasabah } = res
+            this.entries = data_nasabah
+            
+          })
+          .catch(err => {
+            console.log(err);// eslint-disable-line
+          })
+          .finally(() => (this.isLoading = false))
+      },
+    },
+
+    // jam realtime
+    // created(){
+    //     var myVar = setInterval(myTimer, 1000);//eslint-disable-line
+      
+    //     function myTimer() {//eslint-disable-line
+    //       var d = new Date();
+    //       document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+    //     }
+    // }
+};
+</script>
+
+<style>
+.bulat-atas{
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+}
+.bulat-bawah{
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+.cstm-tmbl{
+    width: 50px;
+    height: 50px;
+}
+.bgGrad{
+    background: #f84100;
+    background-image: linear-gradient(#f84100, #f9d213);
+}
+.tmblTambah{
+  margin-top: -25px;
+}
+.bgUtama{
+  background-color: #f9f9f9;
+}
+</style>

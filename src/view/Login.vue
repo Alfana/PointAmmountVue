@@ -14,7 +14,11 @@
         md="4"
       >
         <v-card-text class="logoLogin">
-          <v-img class="" src="/gambar/icon.png"></v-img>
+          <v-container>
+            <v-container>
+              <v-img class="" src="/gambar/reward.png"></v-img>
+            </v-container>
+          </v-container>
         </v-card-text>
       </v-col>
 
@@ -23,56 +27,46 @@
         sm="12"
         md="4"
       >
-          <v-card-text>
-              <v-text-field
-                label="E-mail"
-                :rules="emailRules"
-                v-model="form.email"
-                type="email"
-                required
-                outlined
-                :clearable="true"
-              />
+        <v-card-text>
+            <v-text-field
+              label="E-mail"
+              :rules="emailRules"
+              v-model="form.email"
+              type="email"
+              required
+              outlined
+              :clearable="true"
+              rounded
+            />
 
-              <v-text-field
-                label="Password"
-                v-model="form.password"
-                required
-                :rules="passwordRules"
-                outlined
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="show = !show"
-                :type="show ? 'text' : 'password'"
-              />      
-            <v-btn 
-              type="submit" 
-              class="btnLogin" 
-              dark 
-              form="check-login-form"
-              elevation="0"
-            >
-              Masuk
-            </v-btn>
-          </v-card-text>
+            <v-text-field
+              label="Password"
+              v-model="form.password"
+              required
+              rounded
+              :rules="passwordRules"
+              outlined
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show = !show"
+              :type="show ? 'text' : 'password'"
+            />      
+          <v-btn 
+            :disabled="!valid"
+            type="submit" 
+            class="btnLogin" 
+            dark 
+            form="check-login-form"
+            elevation="0"
+            :loading="load"
+            rounded
+          >
+            Masuk
+          </v-btn>
+        </v-card-text>
      
       </v-col>
     </v-row>
     </v-form>
-
-    <v-snackbar
-      v-model="lgOk"
-      :color="color"
-      :top="y === 'top'"
-    >
-      {{ textOk }}
-      <v-btn
-        dark
-        text
-        @click="lgOk = false"
-      >
-        Ok
-      </v-btn>
-    </v-snackbar>
 
     <v-snackbar
       v-model="lgFail"
@@ -83,7 +77,7 @@
       <v-btn
         dark
         text
-        @click="lgFail = false"
+        @click="lgFail = false;load = false"
       >
         Ok
       </v-btn>
@@ -92,15 +86,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+  import axios from 'axios'; //eslint-disable-line
+  import url from '@/config'//eslint-disable-line
 export default {
+  name:'Login',
   data() {
     return {
+      load:false,
       show: false,
       color: 'success',
-      lgOk: '',
       lgFail: '',
-      textOk: 'Login Berhasil',
       textFail: 'Username atau Password salah',
       timeout: 3000,
       x: null,
@@ -109,13 +104,13 @@ export default {
       email: '',
       emailRules: [
         v => !!v || 'E-mail harus diisi',
-        v => /.+@.+./.test(v) || 'E-mail tidak valid',
+        v => /.+@.+/.test(v) || 'E-mail tidak valid',
       ],
       lastname: '',
-      passwordRules: [
-        v => !!v || 'Password harus diisi',
-        v => v.length >= 8 || 'Password harus lebih dari 8 karakter',
-      ],
+      // passwordRules: [
+      //   v => !!v || 'Password harus diisi',
+      //   v => v.length >= 8 || 'Password harus lebih dari 8 karakter',
+      // ],
       form:{
         email:'',
         password:''
@@ -126,7 +121,8 @@ export default {
   },
   methods:{
   login() {
-    axios.post('http://localhost:8000/api/login', this.form, {
+    this.load = true
+    axios.post(url.api+'login', this.form, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -142,11 +138,18 @@ export default {
           localStorage.sess = this.$session.get('session-id')
           localStorage.token = user.api_token
           localStorage.id = user.id
+          localStorage.akses = user.akses
+          localStorage.name = user.name
+          localStorage.unit = user.unit
+          localStorage.id_officer = user.id_officer
           localStorage.popUp = 'belum'
-          this.$router.push('home')
+          location.reload();
+          // window.open('http://www.google.com')
+          // this.$router.push('home')
           
         }else{
           this.lgFail = true
+          this.load = false
         }
       }else{
           alert("Login Gagal");
@@ -167,9 +170,9 @@ export default {
 .btnLogin{
   width: 100%;
   height: 50px!important;
-  background-image: linear-gradient(to right,#F4473B,#EBB335)
+  background-image: linear-gradient(to right,#00418A,#FFD400);
 }
 .logoLogin{
-  margin-top: 15%
+  margin-top: 15%;
 }
 </style>

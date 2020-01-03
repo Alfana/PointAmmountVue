@@ -1,0 +1,141 @@
+<template>
+    <v-container>
+      <!-- <v-btn class="ma-2" tile color="indigo" dark @click="mitra=true, mitra()">Tambah Mitra</v-btn> -->
+
+      <v-card elevation="3">
+        <v-tabs
+          v-model="reedem"
+          fixed-tabs
+          background-color="transparent"
+          color="#2171A1"
+          elevation="3"
+          class="tabreedem"
+          icons-and-text
+        >
+            <v-tabs-slider></v-tabs-slider>
+            <v-tab href="#daftarcs">
+                CS
+                <v-icon>mdi-face-agent</v-icon>
+            </v-tab>
+            <v-tab href="#daftarmitra">
+                Mitra
+                <v-icon>mdi-account-group</v-icon>
+            </v-tab>
+        </v-tabs>
+      </v-card>
+
+      <v-tabs-items v-model="reedem">
+        <!-- TAB CS -->
+        <v-tab-item :value="'daftarcs'">
+            <div
+            v-for="(item, i) in datacs"
+            :key="i"
+            >
+              <v-card 
+                elevation="7" 
+                class="mitracard" 
+                shaped
+                height="70"
+                @click="detailcs(item.id_user, item.name)"
+              >
+                <v-list-item >
+                <v-list-item-avatar color="iconbawah">
+                  <v-icon dark>mdi-account-circle</v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title class="font-weight-black">{{item.name}}</v-list-item-title>
+                  <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
+                </v-list-item-content>
+                </v-list-item>        
+              </v-card>
+            </div>
+        </v-tab-item>        
+
+        <!-- TAB MITRA -->
+        <v-tab-item :value="'daftarmitra'">
+            <div
+            v-for="(item, i) in datamitra"
+            :key="i"
+            >
+              <v-card 
+                elevation="7" 
+                class="mitracard" 
+                shaped
+                height="70"
+                @click="detailmitra(item.id_user)"
+              >
+                <v-list-item >
+                <v-list-item-avatar color="iconbawah">
+                  <v-icon dark>mdi-account-circle</v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title class="font-weight-black">{{item.nama_mitra}}</v-list-item-title>
+                  <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
+                </v-list-item-content>
+                </v-list-item>        
+              </v-card>
+            </div>
+        </v-tab-item>     
+      </v-tabs-items>      
+    </v-container>
+</template>
+
+
+<script>
+  import axios from 'axios'; //eslint-disable-line
+  import url from '@/config'
+  export default {
+    data: () => ({
+      reedem: null,
+      datacs: [],
+      datamitra:[],
+
+    }),
+    methods :{      
+      detailcs(idcs, namacs){
+        localStorage.id_cs = idcs
+        localStorage.tabledetail = "cs"
+        localStorage.namacs = namacs
+        this.$router.push('/detmitra')
+      },
+      detailmitra(idmitra){
+        localStorage.id_mitra = idmitra
+        localStorage.tabledetail = "mitra"
+        this.$router.push('/detmitra')
+      },
+      getpointcs() {
+          var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'allpointcs', idofficer)
+            .then((res)=>{
+                this.datacs = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+        getpointmitra() {
+          var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'allpointmitra', idofficer)
+            .then((res)=>{
+                this.datamitra = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+    },
+    created(){
+        this.getpointcs()
+        this.getpointmitra()
+    },
+  }
+</script>
+
+<style>
+.mitracard{
+  margin-top: 10px;
+  margin-bottom: 13px;
+  padding-top: 5px;
+}
+.btl{
+    float: right;
+}
+</style>

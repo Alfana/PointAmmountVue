@@ -14,6 +14,10 @@ export default new Vuetify({
             homeAtas: '#f84100',
             homeBawah: '#f9d213',
             inputLogin: '#F4473B',
+            btnedit: '#EF8E38',
+            // icontext: '#2171A1',
+            icontext: '#7F7F7F',
+            iconbawah: '#2171A1',
           },
           dark: {
             iconAtas: colors.grey.darken3,
