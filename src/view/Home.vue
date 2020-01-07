@@ -35,14 +35,20 @@
       elevation="3"
       class="menuicon"
       >
-        <!-- <v-row>
-          <v-col cols="4" sm="3">
+        <v-row>
+          <!-- <v-col cols="4" sm="3">
             <router-link to="karyawan">
               <v-img class="icon" src="/icon/point.png"></v-img>
             </router-link>
             <h5 class="icontext--text">Data Karyawan</h5>
           </v-col>
           <v-col cols="4" sm="3">
+            <router-link to="karyawan">
+              <v-img class="icon" src="/icon/point.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Tambah</h5>
+          </v-col> -->
+          <!-- <v-col cols="4" sm="3">
             <router-link to="/pointao">
               <v-img class="icon" src="/icon/aopoint.png"></v-img>
             </router-link>
@@ -53,8 +59,8 @@
               <v-img class="icon" src="/icon/mitrapoint.png"></v-img>
             </router-link>
             <h5 class="icontext--text">Point Mitra</h5>
-          </v-col>
-        </v-row> -->
+          </v-col> -->
+        </v-row>
         
         <v-row>
           <v-col cols="4" sm="3">
@@ -220,7 +226,7 @@
         </v-row>
       </v-card>
 
-      <!-- <v-row dense>
+      <v-row dense>
         <v-col
           v-for="card in cards"
           :key="card.title"
@@ -229,12 +235,12 @@
           <v-card
           @click="detailgift(card.title)"
           >
-            <img :src="card.src" alt="" class="white--text align-end gambar">
+            <img :src="card.src" alt="" class="white--text align-end" style="height: 120px; width: 172px;">
             <v-card-subtitle class="pb-0" v-text="card.title"></v-card-subtitle>
             <v-card-text class="text--primary" v-text="card.des"></v-card-text>            
           </v-card>
         </v-col>
-      </v-row> -->
+      </v-row>
 
         <!-- end isi body -->
     </v-container>
@@ -265,23 +271,21 @@ export default {
     unit: localStorage.unit,
     akses: localStorage.akses,
     cards: [
-        { title: 'Login', des:'', link:'/reedemlist' , src: '/produk/login.png', flex: 6 },
+        { title: 'Loan', des:'', link:'/reedemlist' , src: '/produk/loan.png', flex: 6 },
         { title: 'Deposito', des:'', link:'/reedemlist' , src: '/produk/deposito.png', flex: 6 },
-        { title: 'Giro', des:'', link:'/reedemlist' , src: '/produk/gir.png', flex: 6 },
+        { title: 'Giro', des:'', link:'/reedemlist' , src: '/produk/giro.png', flex: 6 },
         { title: 'Tabungan', des:'', link:'/reedemlist' , src: '/produk/tabungan.png', flex: 6 },
-        { title: 'Bancassurance', des:'', link:'/reedemlist' , src: '/produk/banncaassurance.png', flex: 6 },
+        { title: 'Bancassurance', des:'', link:'/reedemlist' , src: '/produk/bancassurance.png', flex: 6 },
         { title: 'DPLK', des:'', link:'/reedemlist' , src: '/produk/dplk.png', flex: 6 },
-        { title: 'SimPel', des:'', link:'/reedemlist' , src: '/produk/simpel.png', flex: 6 },
+        { title: 'SimPel', des:'', link:'/reedemlist' , src: '/produk/simple.png', flex: 6 },
         { title: 'Credit Card', des:'', link:'/reedemlist' , src: '/produk/cc.png', flex: 6 },
         { title: 'Reksadana', des:'', link:'/reedemlist' , src: '/produk/reksadana.png', flex: 6 },
-        { title: 'T-Samsat', des:'', link:'/reedemlist' , src: '/produk/Tsamsat.png', flex: 6 },
-        { title: 'Western Union', des:'', src: '/produk/westernunion.png', flex: 6 },
-        { title: 'Penerbitan ATM', des:'', link:'/reedemlist' , src: '/produk/penerbitanatm.png', flex: 6 },
+        { title: 'T-Samsat', des:'', link:'/reedemlist' , src: '/produk/tsamsat.png', flex: 6 },
+        { title: 'Western Union', des:'', src: '/produk/wu.png', flex: 6 },
+        { title: 'Penerbitan ATM', des:'', link:'/reedemlist' , src: '/produk/atm.png', flex: 6 },
         { title: 'BJB Digi', des:'', link:'/reedemlist' , src: '/produk/bjbdigi.png', flex: 6 },
-        { title: 'Kerjasama Sekolah', des:'', link:'/reedemlist' , src: '/produk/kerjasamaskolah.png', flex: 6 },
-        { title: 'Pembayaran Lainnya', des:'', link:'/reedemlist' , src: '/produk/pembayaranlainnya.png', flex: 6 },
-        { title: 'Prospek Debitur', des:'', link:'/reedemlist' , src: '/produk/prospekdebitur.png', flex: 6 },
-        { title: 'Realisasi Debitur', des:'', link:'/reedemlist' , src: '/produk/realisasidebitur.png', flex: 6 },
+        { title: 'Kerjasama Sekolah', des:'', link:'/reedemlist' , src: '/produk/sekolah.png', flex: 6 },
+        { title: 'Pembayaran Lainnya', des:'', link:'/reedemlist' , src: '/produk/lainnya.png', flex: 6 },
     ],
     showLoading: false,
     loading: true,
@@ -399,12 +403,12 @@ export default {
 .menuicon{
   margin-bottom: 8px;
 }
-.gambar{
+/* .gambar{
   display: block;
   margin-left: auto;
   margin-right: auto;
   padding-top: 10px;
   width: 50%;
   height: 120px;
-}
+} */
 </style>

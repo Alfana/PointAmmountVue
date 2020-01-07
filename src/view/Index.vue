@@ -69,8 +69,8 @@
           <v-icon>mdi-home</v-icon>
         </v-btn>
 
-        <v-btn to="">
-          <span>Pringkat KCP</span>
+        <v-btn to="/peringkatkcp">
+          <span>Pringkat Unit</span>
           <v-icon>mdi-crown</v-icon>
         </v-btn>
 
@@ -84,10 +84,10 @@
           <v-icon>mdi-gift</v-icon>
         </v-btn> -->
 
-        <v-btn to="/account">
+        <!-- <v-btn to="/account">
           <span>Akun</span>
           <v-icon>mdi-file-document</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-bottom-navigation>
 
       <!-- MENU CS -->
@@ -103,8 +103,8 @@
           <span>Beranda</span>
           <v-icon>mdi-home</v-icon>
         </v-btn>
-        <v-btn to="">
-          <span>Pringkat KCP</span>
+        <v-btn to="/peringkatkcp">
+          <span>Pringkat Unit</span>
           <v-icon>mdi-crown</v-icon>
         </v-btn>
       </v-bottom-navigation>
@@ -122,8 +122,8 @@
           <span>Beranda</span>
           <v-icon>mdi-home</v-icon>
         </v-btn>
-        <v-btn to="">
-          <span>Pringkat KCP</span>
+        <v-btn to="/peringkatkcp">
+          <span>Pringkat Unit</span>
           <v-icon>mdi-crown</v-icon>
         </v-btn>
       </v-bottom-navigation>
@@ -141,8 +141,8 @@
           <span>Beranda</span>
           <v-icon>mdi-home</v-icon>
         </v-btn>
-        <v-btn to="">
-          <span>Pringkat KCP</span>
+        <v-btn to="/peringkatkcp">
+          <span>Pringkat Unit</span>
           <v-icon>mdi-crown</v-icon>
         </v-btn>
       </v-bottom-navigation>

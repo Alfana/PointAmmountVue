@@ -12,29 +12,29 @@
             >
                 <v-tabs-slider></v-tabs-slider>
                 <v-tab href="#daftarcs">
-                    Pringkat Unit BJB
-                    <v-icon>mdi-crown</v-icon>
+                    Detail Point Unit
+                    <v-icon>mdi-face-agent</v-icon>
                 </v-tab>
             </v-tabs>
         </v-card>
 
         <div
-        v-for="(item, i) in dataunit"
+        v-for="(item, i) in datacs"
         :key="i"
         >
             <v-card 
             elevation="7" 
             class="mitracard" 
             shaped
-            height="70"          
-            @click="detailunit(item.id_officer)"  
+            height="70"
+            @click="detailcs(item.id_user, item.name)"
             >
             <v-list-item >
             <v-list-item-avatar color="iconbawah">
                 <v-icon dark>mdi-account-circle</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-                <v-list-item-title class="font-weight-black">{{item.unit}}</v-list-item-title>
+                <v-list-item-title class="font-weight-black">{{item.name}}</v-list-item-title>
                 <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>        
@@ -50,29 +50,48 @@
   export default {
     data: () => ({
       reedem: null,
-      dataunit: [],
       datacs: [],
       pointtambah: [],
       pointkurang: [],
 
     }),
     methods :{      
-        detailunit(idofficer){
-            localStorage.detunit = idofficer
-            this.$router.push('/peringkatdet')
+        detailcs(idcs, namacs){
+            localStorage.id_cs = idcs
+            // localStorage.tabledetail = "cs"
+            localStorage.namacs = namacs
+            this.$router.push('/detcs')
          },
-        getpointunit() {
-            // var idofficer = [localStorage.id]
+        getpointcs() {
+            var idofficer = [localStorage.detunit]
             axios
-            .post(url.api+'allunit')
+            .post(url.api+'detunit', idofficer)
             .then((res)=>{
-                this.dataunit = res.data
+                this.datacs = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+        pointcstambah() {
+            var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'pointcstambah', idofficer)
+            .then((res)=>{
+                this.pointtambah = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+        pointcskurang() {
+            var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'pointcskurang', idofficer)
+            .then((res)=>{
+                this.pointkurang = res.data
                 // console.log(res)//eslint-disable-line
             })
         },
     },
     created(){
-        this.getpointunit()
+        this.getpointcs()
         // this.pointcstambah()
         // this.pointcskurang()
     },

@@ -43,7 +43,9 @@
                     <v-list-item >
                     <v-list-item-avatar color="iconbawah">
                         <v-icon dark>mdi-account-circle</v-icon>
+                        <!-- <v-img v-if="point >= 30" :src="url.gambar+'rank/'+gambarRank[i]"></v-img> -->
                     </v-list-item-avatar>
+                    
                     <v-list-item-content>
                         <v-list-item-title class="font-weight-black">{{item.nama_mitra}}</v-list-item-title>
                         <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
@@ -189,6 +191,10 @@ import url from '@/config'
 export default {
   name: 'Index',
   data: () => ({
+    gambarRank:[
+        "kuda.png",
+        "kelinci.png",
+    ],
     reedem: null,
     datamitra:[],
     idnasabah: '',

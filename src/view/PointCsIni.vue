@@ -12,7 +12,7 @@
             >
                 <v-tabs-slider></v-tabs-slider>
                 <v-tab href="#daftarcs">
-                    Point AO
+                    Point CS
                     <v-icon>mdi-face-agent</v-icon>
                 </v-tab>
             </v-tabs>

@@ -14,6 +14,9 @@
       <v-btn small class="ma-2" tile color="indigo" dark to="/gift">
         <v-icon left>mdi-keyboard-backspace</v-icon> Kembali
       </v-btn>
+      <v-btn small class="ma-2 tambah" tile color="success" @click="tambah()" v-if="user==0">
+        <v-icon small left>mdi-gift</v-icon> Tambah Hadiah
+      </v-btn>
 
       <v-row dense>
         <v-col
@@ -23,7 +26,7 @@
         >
           <v-card>
             <v-img
-              :src="key.gambar"
+              :src="link+key.gambar"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="100px"              
@@ -43,11 +46,18 @@
   import url from '@/config'//eslint-disable-line
   export default {
     data: () => ({
+    link: url.gambar+'produk/',
+    user: localStorage.akses,
+    produk: localStorage.produk,
     judul: localStorage.produk,
     gift: [],
     reward: null,
     }),
     methods:{
+      tambah(){
+        localStorage.kembali = "/giftdet"
+        this.$router.push("/gifttambah")
+      },
       giftdetail() {
           var produk = [localStorage.produk]
           // console.log(produk)//eslint-disable-line
@@ -69,5 +79,9 @@
 <style>
 .btl{
     float: right;
+}
+.tambah{
+  float: right;
+  width: 150px;
 }
 </style>
