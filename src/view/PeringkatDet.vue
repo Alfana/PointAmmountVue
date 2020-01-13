@@ -27,7 +27,6 @@
             class="mitracard" 
             shaped
             height="70"
-            @click="detailcs(item.id_user, item.name)"
             >
             <v-list-item >
             <v-list-item-avatar color="iconbawah">

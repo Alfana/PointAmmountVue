@@ -12,18 +12,6 @@
         v-model="point_mitra"
         >
             <v-tabs-slider></v-tabs-slider>
-            <!-- <v-tab href="#mitra">
-                Point CS
-                <v-icon>mdi-face-agent</v-icon>
-            </v-tab>
-            <v-tab href="#ao">
-                Point AO
-                <v-icon>mdi-face-agent</v-icon>
-            </v-tab>
-            <v-tab href="#tmitra">
-                Point Mitra
-                <v-icon>mdi-account-group</v-icon>
-            </v-tab> -->
             <v-tab href="#treedem">
                 Reedem Internal
                 <v-icon>mdi-gift</v-icon>
@@ -35,9 +23,9 @@
         </v-tabs>
         </v-card>
 
-        <v-tabs-items v-model="point_mitra">
-
+        
         <!-- REEDEM INTERNAL-->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'treedem'">
             <v-card>
                 <v-card-title>
@@ -101,8 +89,10 @@
                 </v-data-table>
             </v-card>
         </v-tab-item>
+        </v-tabs-items>
 
         <!-- REEDEM EXTERNAL-->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'treedemexternal'">
             <v-card>
                 <v-card-title>

@@ -23,7 +23,7 @@
               <v-row style="margin-top:-10px">
                 <v-col class="text-left white--text">
                   <h3 class="kananAtas"><small>{{waktu}}</small></h3>
-                  <h2 class="kananAtas">{{user}}</h2>
+                  <h3 class="kananAtas">{{user}}</h3>
                 </v-col>
                 <v-col class="text-right">
                   <v-avatar color="" style="cursor:pointer" v-on="on" size="40">
@@ -159,7 +159,7 @@ export default {
     window: false,
     akses: localStorage.akses,
     waktu:'',
-    user: localStorage.name,
+    user: '',
     unit: localStorage.unit,
     sheet: false,
     inset: false,
@@ -174,8 +174,14 @@ export default {
       localStorage.clear();
       this.$router.push('Auth');
     },
+    nama(){
+      var nama = localStorage.name;
+      this.user = nama.replace(/ .*/,'');
+      // console.log(user);//eslint-disable-line
+    }
   },
   created() {
+    this.nama()
     // var myVar = setInterval(myTimer, 1000);//eslint-disable-line
   
     // function myTimer() {//eslint-disable-line
@@ -198,8 +204,7 @@ export default {
     // setting timeout login 2 jam
     var self = this
     var waktu = 2 * 60 * 60 * 1000
-    setTimeout(function()
-    {
+    setTimeout(function() {
       self.$session.destroy()
       localStorage.clear();
       location.reload()

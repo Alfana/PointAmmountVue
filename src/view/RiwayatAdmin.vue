@@ -2,13 +2,14 @@
     <v-container>
         <v-card elevation="3">
         <v-tabs
-        fixed-tabs
+        v-model="point_mitra"
         background-color="transparent"
         color="#2171A1"
         elevation="3"
         class="tabpoint"
+        fixed-tabs
         icons-and-text
-        v-model="point_mitra"
+        centered
         >
             <v-tabs-slider></v-tabs-slider>
             <v-tab href="#mitra">
@@ -23,55 +24,49 @@
                 Point Mitra
                 <v-icon>mdi-account-group</v-icon>
             </v-tab>
-            <v-tab href="#treedem">
-                Reedem Point Internal
-                <v-icon>mdi-gift</v-icon>
-            </v-tab>
-            <v-tab href="#treedemexternal">
-                Reedem Point External
-                <v-icon>mdi-gift</v-icon>
-            </v-tab>
         </v-tabs>
         </v-card>
 
         <v-tabs-items v-model="point_mitra">
         <!-- CS -->
-        <v-tab-item :value="'mitra'">
-            <v-card>
-                <v-card-title>
-                <v-row>
-                    <v-col cols="6">
-                        Riwayat CS  
-                        <h5></h5>               
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field
-                            dense
-                            outlined
-                            rounded
-                            v-model="searchcs"
-                            label="Cari data"
-                            single-line
-                            hide-details
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                </v-card-title>
+            <v-tab-item :value="'mitra'">
+                <v-card>
+                    <v-card-title>
+                    <v-row>
+                        <v-col cols="6">
+                            Riwayat CS  
+                            <h5></h5>               
+                        </v-col>
+                        <v-col cols="6">
+                            <v-text-field
+                                dense
+                                outlined
+                                rounded
+                                v-model="searchcs"
+                                label="Cari data"
+                                single-line
+                                hide-details
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    </v-card-title>
 
-                <v-data-table
-                :headers="headers"
-                :items="data_cs"
-                :search="searchcs"
-                :mobile-breakpoint="100"
-                :items-per-page="5"
-                :footer-props="{
-                    'items-per-page-text': '',
-                }"
-                >
-                </v-data-table>
-            </v-card>
-        </v-tab-item>
+                    <v-data-table
+                    :headers="headers"
+                    :items="data_cs"
+                    :search="searchcs"
+                    :mobile-breakpoint="100"
+                    :items-per-page="5"
+                    :footer-props="{
+                        'items-per-page-text': '',
+                    }"
+                    >
+                    </v-data-table>
+                </v-card>
+            </v-tab-item>
+        </v-tabs-items>
 
+        <v-tabs-items v-model="point_mitra">
         <!-- AO -->
         <v-tab-item :value="'ao'">
             <v-card>
@@ -108,7 +103,9 @@
                 </v-data-table>
             </v-card>
         </v-tab-item>
+        </v-tabs-items>
 
+        <v-tabs-items v-model="point_mitra">
         <!-- MITRA -->
         <v-tab-item :value="'tmitra'">
             <v-card>
@@ -179,80 +176,6 @@
                 </v-data-table>
             </v-card>
         </v-tab-item>
-
-        <!-- REEDEM INTERNAL-->
-        <!-- <v-tab-item :value="'treedem'">
-            <v-card>
-                <v-card-title>
-                <v-row>
-                    <v-col cols="6">
-                        Reedem
-                        <h5>Internal</h5>                
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field
-                            dense
-                            outlined
-                            rounded
-                            v-model="searchreedeminternal"
-                            label="Cari data"
-                            single-line
-                            hide-details
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                </v-card-title>
-
-                <v-data-table
-                :headers="headersreedem"
-                :items="data_reedeminternal"
-                :search="searchreedeminternal"
-                :mobile-breakpoint="100"
-                :items-per-page="5"
-                :footer-props="{
-                    'items-per-page-text': '',
-                }"
-                >
-                </v-data-table>
-            </v-card>
-        </v-tab-item> -->
-
-        <!-- REEDEM EXTERNAL-->
-        <!-- <v-tab-item :value="'treedemexternal'">
-            <v-card>
-                <v-card-title>
-                <v-row>
-                    <v-col cols="6">
-                        Reedem
-                        <h5>External</h5>                
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field
-                            dense
-                            outlined
-                            rounded
-                            v-model="searchreedemexternal"
-                            label="Cari data"
-                            single-line
-                            hide-details
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                </v-card-title>
-
-                <v-data-table
-                :headers="headersreedemexternal"
-                :items="data_reedemexternal"
-                :search="searchreedemexternal"
-                :mobile-breakpoint="100"
-                :items-per-page="5"
-                :footer-props="{
-                    'items-per-page-text': '',
-                }"
-                >
-                </v-data-table>
-            </v-card>
-        </v-tab-item> -->
         </v-tabs-items>
 
 

@@ -63,7 +63,7 @@
             this.$router.push('/detcs')
          },
         getpointcs() {
-            var idofficer = [localStorage.id]
+            var idofficer = [localStorage.unit]
             axios
             .post(url.api+'allpointcs', idofficer)
             .then((res)=>{

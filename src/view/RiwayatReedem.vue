@@ -35,9 +35,9 @@
         </v-tabs>
         </v-card>
 
-        <v-tabs-items v-model="point_mitra">
 
         <!-- REEDEM INTERNAL-->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'treedem'">
             <v-card>
                 <v-card-title>
@@ -91,8 +91,10 @@
                 </v-data-table>
             </v-card>
         </v-tab-item>
+        </v-tabs-items>
 
         <!-- REEDEM EXTERNAL-->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'treedemexternal'">
             <v-card>
                 <v-card-title>
@@ -284,7 +286,7 @@ export default {
         })
     },
     getreedeminternal() {
-        var idofficer = [localStorage.id]
+        var idofficer = [localStorage.unit]
         axios
         .post(url.api+'historyreedem', idofficer)
         .then((res)=>{
@@ -293,7 +295,7 @@ export default {
         })
     },
     getreedemexternal() {
-        var idofficer = [localStorage.id]
+        var idofficer = [localStorage.unit]
         axios
         .post(url.api+'historyreedemexternal', idofficer)
         .then((res)=>{
