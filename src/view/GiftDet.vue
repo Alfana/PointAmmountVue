@@ -33,7 +33,13 @@
             >
             </v-img>
             <v-card-subtitle class="pb-0">{{key.nama_reward}}</v-card-subtitle>
-            <v-card-text class="text--primary">{{key.point}} Point</v-card-text>            
+            <v-card-text class="text--primary">{{key.point}} Point</v-card-text>
+            <v-card-actions v-if="user==0">
+              <v-spacer></v-spacer>
+              <v-btn icon color="red" @click="hapus(key.id_reward)">
+                <v-icon>mdi-trash-can</v-icon>
+              </v-btn>
+            </v-card-actions>         
           </v-card>
         </v-col>
       </v-row>
@@ -65,6 +71,15 @@
             .post(url.api+'reward', produk)
             .then((res)=>{
                 this.gift = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },        
+      hapus(id) {
+            var id_reward = [id]
+            axios
+            .post(url.api+'hapusreward', id_reward)
+            .then((res)=>{//eslint-disable-line
+                this.giftdetail()
                 // console.log(res)//eslint-disable-line
             })
         },
