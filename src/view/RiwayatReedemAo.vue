@@ -25,7 +25,7 @@
                 <v-icon>mdi-account-group</v-icon>
             </v-tab> -->
             <v-tab href="#treedem">
-                Reedem CS
+                Reedem AO
                 <v-icon>mdi-gift</v-icon>
             </v-tab>
             <v-tab href="#treedemexternal">
@@ -44,7 +44,7 @@
                 <v-row>
                     <v-col cols="6">
                         Reedem
-                        <h5>CS</h5>                
+                        <h5>AO</h5>                
                     </v-col>
                     <v-col cols="6">
                         <v-text-field
@@ -83,7 +83,7 @@
                         outlined
                         color="success"
                         v-if="item.status_pengajuan==1"
-                        @click="disampaikan(item.id_point)"
+                        @click="disampaikan(item.id_point, 'AO')"
                     >
                         <v-icon small>mdi-check-circle</v-icon>
                     </v-btn>
@@ -140,7 +140,7 @@
                         outlined
                         color="success"
                         v-if="item.status_pengajuan==1"
-                        @click="disampaikan(item.id_point)"
+                        @click="disampaikan(item.id_point, 'MITRA')"
                     >
                         <v-icon small>mdi-check-circle</v-icon>
                     </v-btn>
@@ -212,7 +212,7 @@ export default {
         ],
     searchreedem:'',
     headersreedem: [
-        { text: 'Nama', sortable: true, value: 'name', },
+        { text: 'Nama', sortable: true, value: 'nama_user', },
         { text: 'Produk', value: 'produk', sortable: true, },
         { text: 'Produk Reedem', value: 'produk_reedem', sortable: false, },
         { text: 'Qty', value: 'qty', sortable: false, },
@@ -288,7 +288,7 @@ export default {
     getreedeminternal() {
         var idofficer = [localStorage.unit]
         axios
-        .post(url.api+'historyreedem', idofficer)
+        .get(url.api+'historyreedem_ao', idofficer)
         .then((res)=>{
             this.data_reedeminternal = res.data
             // console.log(res)//eslint-disable-line
@@ -303,13 +303,22 @@ export default {
             // console.log(res)//eslint-disable-line
         })
     },
-    disampaikan(id){
+    disampaikan(id, jab){        
         var id_point = [id]
-        axios
-        .post(url.api+'disampaikan', id_point)
-        .then((res)=>{//eslint-disable-line
-            this.bukacs()
-        })
+       if (jab == "AO") {
+            axios
+            .post(url.api+'disampaikan_ao', id_point)
+            .then((res)=>{//eslint-disable-line
+                this.bukacs()
+            })
+       }else{
+            axios
+            .post(url.api+'disampaikan', id_point)
+            .then((res)=>{//eslint-disable-line
+                this.bukacs()
+            })
+       }
+        
     },
       
   },

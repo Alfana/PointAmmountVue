@@ -27,8 +27,8 @@
         </v-tabs>
         </v-card>
 
-        <v-tabs-items v-model="point_mitra">
         <!-- CS -->
+        <v-tabs-items v-model="point_mitra">
             <v-tab-item :value="'mitra'">
                 <v-card>
                     <v-card-title>
@@ -66,8 +66,8 @@
             </v-tab-item>
         </v-tabs-items>
 
-        <v-tabs-items v-model="point_mitra">
         <!-- AO -->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'ao'">
             <v-card>
                 <v-card-title>
@@ -91,7 +91,7 @@
                 </v-card-title>
 
                 <v-data-table
-                :headers="headers"
+                :headers="headersao"
                 :items="data_ao"
                 :search="searchao"
                 :mobile-breakpoint="100"
@@ -105,8 +105,8 @@
         </v-tab-item>
         </v-tabs-items>
 
-        <v-tabs-items v-model="point_mitra">
         <!-- MITRA -->
+        <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'tmitra'">
             <v-card>
                 <v-card-title>
@@ -265,11 +265,9 @@ export default {
     data_ao: [],
     searchao:'',
     headersao: [
-        { text: 'Nama CS', sortable: true, value: 'name', },
+        { text: 'Nama AO', sortable: true, value: 'nama_user', },   
         { text: 'Produk', value: 'produk', sortable: true, },
         { text: 'Point', value: 'point', sortable: false, },
-        { text: 'NOA', value: 'noa', sortable: false, },
-        { text: 'Nominal', value: 'nominal', sortable: false, },
         { text: 'Keterangan', value: 'keterangan', sortable: false, },
         { text: 'Tanggal', value: 'tanggal', sortable: true, },
         ],

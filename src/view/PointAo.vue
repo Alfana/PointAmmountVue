@@ -27,14 +27,14 @@
             class="mitracard" 
             shaped
             height="70"
-            @click="detailao(item.id_user, item.name)"
+            @click="detailao(item.id_user, item.nama_user, item.akses)"
             >
             <v-list-item >
             <v-list-item-avatar color="iconbawah">
                 <v-icon dark>mdi-account-circle</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-                <v-list-item-title class="font-weight-black">{{item.name}}</v-list-item-title>
+                <v-list-item-title class="font-weight-black">{{item.nama_user}}</v-list-item-title>
                 <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>        
@@ -54,16 +54,17 @@
 
     }),
     methods :{      
-      detailao(idao, namaao){
+      detailao(idao, namaao, jabatan){
         localStorage.id_ao = idao
-        // localStorage.tabledetail = "ao"
+        localStorage.tabledetail = "ao"
         localStorage.namaao = namaao
+        localStorage.redjab = jabatan
         this.$router.push('/detao')
       },
       getpointao() {
-          var idofficer = [localStorage.unit]
+        //   var idofficer = [localStorage.unit]
             axios
-            .post(url.api+'allpointao', idofficer)
+            .get(url.api+'allpointao')
             .then((res)=>{
                 this.dataao = res.data
                 // console.log(res)//eslint-disable-line

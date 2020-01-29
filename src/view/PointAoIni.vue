@@ -33,7 +33,7 @@
                 <v-icon dark>mdi-account-circle</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-                <v-list-item-title class="font-weight-black">{{item.name}}</v-list-item-title>
+                <v-list-item-title class="font-weight-black">{{item.nama_user}}</v-list-item-title>
                 <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>        
@@ -48,8 +48,8 @@
   import url from '@/config'
   export default {
     data: () => ({
-      reedem: null,
-      dataao: [],
+        reedem: null,
+        dataao: [],
 
     }),
     methods :{      
@@ -60,9 +60,9 @@
         this.$router.push('/detao')
       },
       getpointao() {
-          var idofficer = [localStorage.id_officer]
+          var idofficer = [localStorage.unit]
             axios
-            .post(url.api+'allpointao', idofficer)
+            .get(url.api+'allpointao', idofficer)
             .then((res)=>{
                 this.dataao = res.data
                 // console.log(res)//eslint-disable-line

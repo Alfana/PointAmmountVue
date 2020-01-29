@@ -54,7 +54,7 @@ import url from '@/config'
             this.$router.push('/reedemmit')
         },
         detcs() {
-            var data = [localStorage.id_cs, localStorage.id]
+            var data = [localStorage.id_cs, localStorage.unit]
         //   var idofficer = [localStorage.id]
             axios
             .post(url.api+'detcs', data)

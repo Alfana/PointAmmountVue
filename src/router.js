@@ -9,6 +9,7 @@ import RiwayatAdmin from './view/RiwayatAdmin'
 import RiwayatCs from './view/RiwayatCs'
 import RiwayatAo from './view/RiwayatAo'
 import RiwayatReedem from './view/RiwayatReedem'
+import RiwayatReedemAo from './view/RiwayatReedemAo'
 import RiwayatReedemAdmin from './view/RiwayatReedemAdmin'
 import Mitra from './view/Mitra'
 import DetMitra from './view/DetMitra'
@@ -28,6 +29,7 @@ import PointAoIni from './view/PointAoIni'
 import PointMitra from './view/PointMitra'
 import PeringkatKcp from './view/PeringkatKcp'
 import PeringkatDet from './view/PeringkatDet'
+import PeringkatDetAo from './view/PeringkatDetAo'
 import VueRouterMultiguard from 'vue-router-multiguard'
 import VueSession from 'vue-session'
 import VueApexCharts from 'vue-apexcharts'
@@ -86,6 +88,7 @@ const router = new Router({
         {path: '/riwayatcs', component:RiwayatCs, name: 'riwayatcs', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/riwayatao', component:RiwayatAo, name: 'riwayatao', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/rewayatreedem', component:RiwayatReedem, name: 'rewayatreedem', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
+        {path: '/rewayatreedemao', component:RiwayatReedemAo, name: 'rewayatreedemao', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/rewayatreedemadmin', component:RiwayatReedemAdmin, name: 'rewayatreedemadmin', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/mitra', component:Mitra, name: 'mitra', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/detmitra', component:DetMitra, name: 'detmitra', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
@@ -106,6 +109,7 @@ const router = new Router({
         {path: '/pointmitra', component:PointMitra, name: 'pointmitra', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/peringkatkcp', component:PeringkatKcp, name: 'peringkatkcp', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
         {path: '/peringkatdet', component:PeringkatDet, name: 'peringkatdet', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
+        {path: '/peringkatdetao', component:PeringkatDetAo, name: 'peringkatdetao', beforeEnter: VueRouterMultiguard([adminLogin,cekSession])},
     ]
   })
 

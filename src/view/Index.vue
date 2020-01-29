@@ -55,7 +55,7 @@
           <router-view class="mb-12 bgUtama"/>
       
       <!-- menu bawah   -->
-      <!-- MENU OFFICER -->
+      <!-- MENU OFFICER CS -->
       <v-bottom-navigation
         v-if="$route.name !== 'auth' && akses == 1"
         style="position: fixed; bottom: 0px;"
@@ -88,6 +88,25 @@
           <span>Akun</span>
           <v-icon>mdi-file-document</v-icon>
         </v-btn> -->
+      </v-bottom-navigation>
+
+      <!-- MENU OFFICER AO -->
+      <v-bottom-navigation
+        v-if="$route.name !== 'auth' && akses == 5"
+        style="position: fixed; bottom: 0px;"
+        class="menuBawah"
+        harizontal
+        elevation="0"
+        color="iconbawah"
+      >
+        <v-btn to="/">
+          <span>Beranda</span>
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-btn to="/peringkatkcp">
+          <span>Pringkat Unit</span>
+          <v-icon>mdi-crown</v-icon>
+        </v-btn>
       </v-bottom-navigation>
 
       <!-- MENU CS -->
@@ -176,7 +195,10 @@ export default {
     },
     nama(){
       var nama = localStorage.name;
-      this.user = nama.replace(/ .*/,'');
+      if (nama) {
+        this.user = nama.replace(/ .*/,'');
+      }
+      
       // console.log(user);//eslint-disable-line
     }
   },

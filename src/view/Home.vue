@@ -73,7 +73,7 @@
             <router-link to="/rewayatreedemadmin">
               <v-img class="icon" src="/icon/reward.png"></v-img>
             </router-link>
-            <h5 class="icontext--text">Riwayat Reedem</h5>
+            <h5 class="icontext--text">Reedem</h5>
           </v-col>
           <v-col cols="4" sm="3">
             <router-link to="/gift">
@@ -84,7 +84,7 @@
         </v-row>
       </v-card>
       
-      <!-- MENU OFFICER -->
+      <!-- MENU OFFICER CS -->
       <v-card
       v-if="$route.name !== 'auth' && akses == 1"
       elevation="3"
@@ -103,11 +103,17 @@
             </router-link>
             <h5 class="icontext--text">Point CS</h5>
           </v-col>
-          <v-col cols="4" sm="3">
+          <!-- <v-col cols="4" sm="3">
             <router-link to="/pointao">
               <v-img class="icon" src="/icon/aopoint.png"></v-img>
             </router-link>
             <h5 class="icontext--text">Point AO</h5>
+          </v-col> -->          
+          <v-col cols="4" sm="3">
+            <router-link to="/gift">
+              <v-img class="icon" src="/icon/reward.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Hadiah</h5>
           </v-col>
           <v-col cols="4" sm="3">
             <router-link to="/inputpoint">
@@ -143,11 +149,91 @@
             </router-link>
             <h5 class="icontext--text">Riwayat Reedem</h5>
           </v-col>
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="/inputpoint">
+              <v-img class="icon" src="/icon/point.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Input Point</h5>
+          </v-col> -->
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="/mitra">
+              <v-img class="icon" src="/icon/reedem.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Reedem</h5>
+          </v-col> -->
+          <v-col cols="4" sm="3">
+            <router-link to="" @click.native="logout()">
+              <v-img class="icon" src="/icon/logout2.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Log Out</h5>
+          </v-col>
+        </v-row>
+      </v-card>
+
+      <!-- MENU OFFICER AO -->
+      <v-card
+      v-if="$route.name !== 'auth' && akses == 5"
+      elevation="3"
+      class="menuicon"
+      >
+        <v-row>
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="/home">
+              <v-img class="icon" src="/icon/home.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Dashboard</h5>
+          </v-col> -->
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="/pointcs">
+              <v-img class="icon" src="/icon/cspoints.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Point CS</h5>
+          </v-col> -->
+          <v-col cols="4" sm="3">
+            <router-link to="/pointao">
+              <v-img class="icon" src="/icon/aopoint.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Point AO</h5>
+          </v-col>          
           <v-col cols="4" sm="3">
             <router-link to="/gift">
               <v-img class="icon" src="/icon/reward.png"></v-img>
             </router-link>
             <h5 class="icontext--text">Hadiah</h5>
+          </v-col>
+          <v-col cols="4" sm="3">
+            <router-link to="/inputpoint">
+              <v-img class="icon" src="/icon/mitrapoint.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Point Mitra</h5>
+          </v-col>
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="">
+              <v-img class="icon" src="/icon/rank.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Pringkat KCP</h5>
+          </v-col> -->
+          
+        </v-row>
+        
+        <v-row>
+          <!-- <v-col cols="4" sm="3">
+            <router-link to="/mitra">
+              <v-img class="icon" src="/icon/reedem.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Reedem</h5>
+          </v-col> -->
+          <v-col cols="4" sm="3">
+            <router-link to="/riwayat">
+              <v-img class="icon" src="/icon/riwayat.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Riwayat Point</h5>
+          </v-col>
+          <v-col cols="4" sm="3">
+            <router-link to="/rewayatreedemao">
+              <v-img class="icon" src="/icon/reedem.png"></v-img>
+            </router-link>
+            <h5 class="icontext--text">Riwayat Reedem</h5>
           </v-col>
           <!-- <v-col cols="4" sm="3">
             <router-link to="/inputpoint">
@@ -161,12 +247,12 @@
             </router-link>
             <h5 class="icontext--text">Reedem</h5>
           </v-col> -->
-          <!-- <v-col cols="4" sm="3">
-            <router-link to="">
+          <v-col cols="4" sm="3">
+            <router-link to="" @click.native="logout()">
               <v-img class="icon" src="/icon/logout2.png"></v-img>
             </router-link>
             <h5 class="icontext--text">Log Out</h5>
-          </v-col> -->
+          </v-col>
         </v-row>
       </v-card>
 

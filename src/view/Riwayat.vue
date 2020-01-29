@@ -15,10 +15,10 @@
                 Point CS
                 <v-icon>mdi-face-agent</v-icon>
             </v-tab>
-            <v-tab href="#ao">
+            <!-- <v-tab href="#ao">
                 Point AO
                 <v-icon>mdi-face-agent</v-icon>
-            </v-tab>
+            </v-tab> -->
             <v-tab href="#tmitra">
                 Point Mitra
                 <v-icon>mdi-account-group</v-icon>
@@ -74,7 +74,7 @@
         </v-tabs-items>
 
         <!-- AO -->
-        <v-tabs-items v-model="point_mitra">
+        <!-- <v-tabs-items v-model="point_mitra">
         <v-tab-item :value="'ao'">
             <v-card>
                 <v-card-title>
@@ -98,7 +98,7 @@
                 </v-card-title>
 
                 <v-data-table
-                :headers="headers"
+                :headers="headersao"
                 :items="data_ao"
                 :search="searchao"
                 :mobile-breakpoint="100"
@@ -110,7 +110,7 @@
                 </v-data-table>
             </v-card>
         </v-tab-item>
-        </v-tabs-items>
+        </v-tabs-items> -->
 
         <!-- MITRA -->
         <v-tabs-items v-model="point_mitra">
@@ -272,12 +272,9 @@ export default {
     data_ao: [],
     searchao:'',
     headersao: [
-        { text: 'Nama CS', sortable: true, value: 'name', },
+        { text: 'Nama CS', sortable: true, value: 'nama_user', },
         { text: 'Produk', value: 'produk', sortable: true, },
         { text: 'Point', value: 'point', sortable: false, },
-        { text: 'NOA', value: 'noa', sortable: false, },
-        { text: 'Nominal', value: 'nominal', sortable: false, },
-        { text: 'Keterangan', value: 'keterangan', sortable: false, },
         { text: 'Tanggal', value: 'tanggal', sortable: true, },
         ],
   }),
@@ -292,7 +289,7 @@ export default {
         // this.getdata_mitra()
     },
     getcs() {
-        var idofficer = [localStorage.id]
+        var idofficer = [localStorage.unit]
         axios
         .post(url.api+'historycs', idofficer)
         .then((res)=>{
@@ -301,9 +298,9 @@ export default {
         })
     },
     getao() {
-        var idofficer = [localStorage.id]
+        // var idofficer = [localStorage.id]
         axios
-        .post(url.api+'historyao', idofficer)
+        .get(url.api+'historyao')
         .then((res)=>{
             this.data_ao = res.data
             // console.log(res)//eslint-disable-line

@@ -26,8 +26,8 @@
             </v-tabs>
         </v-card>
 
-        <v-tabs-items v-model="point_mitra">
             <!-- POINT MITRA -->
+        <v-tabs-items v-model="point_mitra">
             <v-tab-item :value="'pmitra'">
                 <div
                 v-for="(item, i) in datamitra"
@@ -38,7 +38,7 @@
                     class="mitracard" 
                     shaped
                     height="70"
-                    @click="detailmitra(item.id_user, item.nama_mitra)"
+                    @click="detailmitra(item.id_user, item.nama_mitra, item.akses)"
                     >
                     <v-list-item >
                     <v-list-item-avatar color="iconbawah">
@@ -54,8 +54,10 @@
                     </v-card>
                 </div>
             </v-tab-item>
+        </v-tabs-items>
 
             <!-- MITRA -->
+        <v-tabs-items v-model="point_mitra">
             <v-tab-item :value="'mitra'">
                 <v-card elevation="3">
                     <v-container>
@@ -118,8 +120,10 @@
                     </v-container>
                 </v-card>
             </v-tab-item>
+        </v-tabs-items>
 
             <!-- TAMBAH MITRA -->
+        <v-tabs-items v-model="point_mitra">
             <v-tab-item :value="'tmitra'">
                 <v-card elevation="3">
                     <v-container>
@@ -261,10 +265,11 @@ export default {
     },
   }),
   methods:{
-    detailmitra(idmitra, namamitra){
+    detailmitra(idmitra, namamitra, jabatan){
         localStorage.id_mitra = idmitra
         localStorage.namamitra = namamitra
-        // localStorage.tabledetail = "mitra"
+        localStorage.tabledetail = "mitra"
+        localStorage.redjab = jabatan
         this.$router.push('/detmitra')
     },
     getpointmitra() {
@@ -414,7 +419,7 @@ export default {
         })
     },
     getdata_cs(){
-        var id = [localStorage.id]
+        var id = [localStorage.unit]
         axios
             .post(url.api+'data_cs', id)
             .then((res)=>{

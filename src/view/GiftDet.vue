@@ -11,7 +11,7 @@
             </v-list-item-content>
             </v-list-item>        
       </v-card>
-      <v-btn small class="ma-2" tile color="indigo" dark to="/gift">
+      <v-btn small class="ma-2" tile color="indigo" dark @click="kembali()">
         <v-icon left>mdi-keyboard-backspace</v-icon> Kembali
       </v-btn>
       <v-btn small class="ma-2 tambah" tile color="success" @click="tambah()" v-if="user==0">
@@ -60,6 +60,15 @@
     reward: null,
     }),
     methods:{
+      kembali(){
+        if (localStorage.akses == 2) {
+          this.$router.push("/giftcs")
+        }else if (localStorage.akses == 4) {
+          this.$router.push("/giftao")
+        }else{
+          this.$router.push("/gift")
+        }        
+      },
       tambah(){
         localStorage.kembali = "/giftdet"
         this.$router.push("/gifttambah")

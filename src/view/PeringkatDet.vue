@@ -62,9 +62,9 @@
             this.$router.push('/detcs')
          },
         getpointcs() {
-            var idofficer = [localStorage.detunit]
+            var unit = [localStorage.detunit]
             axios
-            .post(url.api+'detunit', idofficer)
+            .post(url.api+'detunit', unit)
             .then((res)=>{
                 this.datacs = res.data
                 // console.log(res)//eslint-disable-line

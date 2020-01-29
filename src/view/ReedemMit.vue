@@ -36,7 +36,7 @@
         >
           <v-card>
             <v-img
-              :src="key.gambar"
+              :src="link+key.gambar"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="100px"              
@@ -81,7 +81,8 @@
   import axios from 'axios'; //eslint-disable-line
   import url from '@/config'//eslint-disable-line
   export default {
-    data: () => ({   
+    data: () => ({
+    link: url.gambar+'produk/',
     dis: true,
     judul: localStorage.produk,
     sisapoint: localStorage.maxpoint,
@@ -99,7 +100,7 @@
             document.getElementById('tbmin'+val).setAttribute("disabled", "disabled")
             document.getElementById('tbmin'+val).setAttribute("class", "v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--default")
           }
-          if (localStorage.maxpoint >= 0) {
+          if (this.sisapoint >= 0) {
             document.getElementById('tbplus'+val).removeAttribute("disabled", "disabled")
             document.getElementById('tbplus'+val).setAttribute("class", "v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default")
           }
@@ -107,10 +108,10 @@
           
           document.getElementById('qty'+val).value = now-=1
           
-          var hasil = parseInt(localStorage.maxpoint) + key
-          localStorage.maxpoint = hasil
-
+          var hasil = parseInt(this.sisapoint) + key
           this.sisapoint = hasil
+
+          // this.sisapoint = hasil
       },
       updateQtyPlus(val,key){
           var now = parseInt(document.getElementById('qty'+val).value)
@@ -122,15 +123,16 @@
 
           // var max = parseInt(localStorage.maxpoint)
           // console.log(key+1)//eslint-disable-line
-          if (localStorage.maxpoint <= key) {
+          if (this.sisapoint <= key+key-1) {
             document.getElementById('tbplus'+val).setAttribute("disabled", "disabled")
             document.getElementById('tbplus'+val).setAttribute("class", "v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--default")
+            // document.getElementById('reedem').setAttribute("disabled", "disabled")
           }
 
-          var hasil = parseInt(localStorage.maxpoint) - key
-          localStorage.maxpoint = hasil
-
+          var hasil = parseInt(this.sisapoint) - key
           this.sisapoint = hasil
+
+          // this.sisapoint = hasil
       },
       giftdetail() {
           var produk = [localStorage.produk, localStorage.maxpoint]
@@ -155,17 +157,76 @@
         this.$router.push(kembali)
       },
       reedem(){
-        var jml = document.getElementsByClassName('qty').length
+        var jml = document.getElementsByClassName('qty').length//eslint-disable-line
+        var kembali = localStorage.kembali
+        var id_user = ''//eslint-disable-line
+        
+        var akses = localStorage.redjab
+        var namaao = localStorage.namaao
+        var namacs = localStorage.namacs
+        var namamit = localStorage.namamitra
+        var jab = ''
+
+        if (kembali == "detao") {
+          id_user = localStorage.id_ao
+        }else if(kembali == "detcs"){
+          id_user = localStorage.id_cs
+        }else if(kembali == "detmitra"){
+          id_user = localStorage.id_mitra
+        }
+
+        if (akses == '5') {
+          jab = 'AO'
+          const wa = [
+            namaao,
+            jab
+          ]
+          axios
+            .post(url.api+'kirim_wa', wa)
+            .then((res)=>{
+                if (res.status==200) {
+                  console.log("WA AO DIKIRIM")//eslint-disable-line
+                }
+            })
+        }else if(akses == '2'){
+          jab = 'CS'
+          const wa = [
+            namacs,
+            jab
+          ]
+          axios
+            .post(url.api+'kirim_wa', wa)
+            .then((res)=>{
+                if (res.status==200) {
+                  console.log("WA CS DIKIRIM")//eslint-disable-line
+                }
+            })
+        }else{
+          jab = 'MITRA'
+          const wa = [
+            namamit,
+            jab
+          ]
+          axios
+            .post(url.api+'kirim_wa', wa)
+            .then((res)=>{
+                if (res.status==200) {
+                  console.log("WA MITRA DIKIRIM")//eslint-disable-line
+                }
+            })
+        }
+
         
         for (let i = 0; i < jml; i++) {
           if (document.getElementById('qty'+i).value > 0) {
             var id_officer = localStorage.id
-            var id_user = localStorage.id_cs
+            // var id_user = localStorage.id_cs
             var produk = localStorage.produk
             var point_reedem = document.getElementById('pointreward'+i).innerText
             var produk_reedem = document.getElementById('namareward'+i).innerText
             var qty = document.getElementById('qty'+i).value
             var pored = point_reedem*qty
+            var jabatan = localStorage.redjab
 
             const data =[
               id_officer,
@@ -173,16 +234,16 @@
               produk,
               pored,
               produk_reedem,
-              qty
+              qty,
+              jabatan
             ]
 
             axios
             .post(url.api+'Ireedem', data)
             .then((res)=>{
                 if (res.status==200) {
-                    // alert(res.data.Pesan)//eslint-disable-line
                     alert("Point Berhasil Di Reedem!")//eslint-disable-line
-                    this.$router.push('/detcs')
+                    this.$router.push('/'+kembali)
                 }
             })
           }

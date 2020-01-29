@@ -20,7 +20,7 @@
           <v-card
           @click="detailgift(card.title)"
           >
-            <img :src="card.src" alt="" class="white--text align-end gambar">
+            <img :src="card.src" alt="" class="white--text align-end" style="height: 120px; width: 172px;">
             <v-card-subtitle class="pb-0" v-text="card.title"></v-card-subtitle>
             <v-card-text class="text--primary" v-text="card.des"></v-card-text>            
           </v-card>
@@ -35,12 +35,13 @@
   import url from '@/config'//eslint-disable-line
   export default {
     data: () => ({
+    link: url.gambar+'produk/',
     produk : '',
     judul: "Kategori",
     header: false,
     reedem: false,
     cards: [
-        { title: 'Loan', des:'', link:'/reedemlist' , src: '/produk/login.png', flex: 6 },
+        { title: 'Loan', des:'', link:'/reedemlist' , src: '/produk/loan.png', flex: 6 },
     ],
     }),
     methods:{
@@ -59,11 +60,6 @@
     float: right;
 }
 .gambar{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
-  width: 50%;
-  height: 120px;
+  height: 120px !important;
 }
 </style>

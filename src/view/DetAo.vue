@@ -19,10 +19,10 @@
                 <template v-slot:default>
                 <tbody>
                     <tr v-for="item in detpoint" :key="item.name">
-                        <td colspan="2">{{ item.produk }}</td>
+                        <td colspan="2">Loan </td>
                         <td>{{ item.point }} Point</td>
                         <td>
-                            <v-btn x-small class="ma-2" tile color="indigo" dark @click="detailgift(item.produk, item.point)">
+                            <v-btn x-small class="ma-2" tile color="indigo" dark @click="detailgift(item.point)">
                                 Tukar Point
                             </v-btn>
                         </td>
@@ -47,8 +47,8 @@ import url from '@/config'
       search: '',
     }),
     methods:{
-        detailgift(produk, maxpoint){
-            localStorage.produk = produk
+        detailgift(maxpoint){
+            localStorage.produk = "Loan"
             localStorage.maxpoint = maxpoint
             localStorage.kembali = "detao"
             this.$router.push('/reedemmit')

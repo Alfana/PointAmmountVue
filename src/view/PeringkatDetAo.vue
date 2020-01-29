@@ -12,12 +12,12 @@
             >
                 <v-tabs-slider></v-tabs-slider>
                 <v-tab href="#daftarcs">
-                    Point CS
+                    Detail Point Unit
                     <v-icon>mdi-face-agent</v-icon>
                 </v-tab>
             </v-tabs>
         </v-card>
-        
+
         <div
         v-for="(item, i) in datacs"
         :key="i"
@@ -33,7 +33,7 @@
                 <v-icon dark>mdi-account-circle</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-                <v-list-item-title class="font-weight-black">{{item.name}}</v-list-item-title>
+                <v-list-item-title class="font-weight-black">{{item.nama_user}}</v-list-item-title>
                 <v-list-item-subtitle class="font-weight-medium">{{item.point}} Point</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>        
@@ -50,27 +50,49 @@
     data: () => ({
       reedem: null,
       datacs: [],
+      pointtambah: [],
+      pointkurang: [],
 
     }),
     methods :{      
-      detailao(idao, namaao){
-        localStorage.id_ao = idao
-        // localStorage.tabledetail = "ao"
-        localStorage.namaao = namaao
-        this.$router.push('/detao')
-      },
-      getpointao() {
-          var idofficer = [localStorage.unit]
+        detailcs(idcs, namacs){
+            localStorage.id_cs = idcs
+            // localStorage.tabledetail = "cs"
+            localStorage.namacs = namacs
+            this.$router.push('/detcs')
+         },
+        getpointao() {
+            var unit = [localStorage.detunit]
             axios
-            .post(url.api+'allpointcs', idofficer)
+            .post(url.api+'detunit_ao', unit)
             .then((res)=>{
                 this.datacs = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+        pointcstambah() {
+            var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'pointcstambah', idofficer)
+            .then((res)=>{
+                this.pointtambah = res.data
+                // console.log(res)//eslint-disable-line
+            })
+        },
+        pointcskurang() {
+            var idofficer = [localStorage.id]
+            axios
+            .post(url.api+'pointcskurang', idofficer)
+            .then((res)=>{
+                this.pointkurang = res.data
                 // console.log(res)//eslint-disable-line
             })
         },
     },
     created(){
         this.getpointao()
+        // this.pointcstambah()
+        // this.pointcskurang()
     },
   }
 </script>

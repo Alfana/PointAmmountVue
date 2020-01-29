@@ -22,80 +22,82 @@
         </v-tabs>
         </v-card>
 
-        <v-tabs-items v-model="point_mitra">
         <!-- AO -->
-        <v-tab-item :value="'mitra'">
-            <v-card>
-                <v-card-title>
-                <v-row>
-                    <v-col cols="6">
-                        Riwayat CS  
-                        <h5></h5>               
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field
-                            dense
-                            outlined
-                            rounded
-                            v-model="searchao"
-                            label="Cari data"
-                            single-line
-                            hide-details
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                </v-card-title>
+        <v-tabs-items v-model="point_mitra">
+            <v-tab-item :value="'mitra'">
+                <v-card>
+                    <v-card-title>
+                    <v-row>
+                        <v-col cols="6">
+                            Riwayat AO 
+                            <h5></h5>               
+                        </v-col>
+                        <v-col cols="6">
+                            <v-text-field
+                                dense
+                                outlined
+                                rounded
+                                v-model="searchao"
+                                label="Cari data"
+                                single-line
+                                hide-details
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    </v-card-title>
 
-                <v-data-table
-                :headers="headers"
-                :items="data_ao"
-                :search="searchao"
-                :mobile-breakpoint="100"
-                :items-per-page="5"
-                :footer-props="{
-                    'items-per-page-text': '',
-                }"
-                >
-                </v-data-table>
-            </v-card>
-        </v-tab-item>
+                    <v-data-table
+                    :headers="headers"
+                    :items="data_ao"
+                    :search="searchao"
+                    :mobile-breakpoint="100"
+                    :items-per-page="5"
+                    :footer-props="{
+                        'items-per-page-text': '',
+                    }"
+                    >
+                    </v-data-table>
+                </v-card>
+            </v-tab-item>
+        </v-tabs-items>
 
         <!-- REEDEM INTERNAL-->
-        <v-tab-item :value="'treedem'">
-            <v-card>
-                <v-card-title>
-                <v-row>
-                    <v-col cols="6">
-                        Reedem Point
-                        <h5></h5>                
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field
-                            dense
-                            outlined
-                            rounded
-                            v-model="searchreedemao"
-                            label="Cari data"
-                            single-line
-                            hide-details
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-                </v-card-title>
+        <v-tabs-items v-model="point_mitra">
+            <v-tab-item :value="'treedem'">
+                <v-card>
+                    <v-card-title>
+                    <v-row>
+                        <v-col cols="6">
+                            Reedem Point
+                            <h5></h5>                
+                        </v-col>
+                        <v-col cols="6">
+                            <v-text-field
+                                dense
+                                outlined
+                                rounded
+                                v-model="searchreedemao"
+                                label="Cari data"
+                                single-line
+                                hide-details
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    </v-card-title>
 
-                <v-data-table
-                :headers="headersreedemao"
-                :items="data_reedemao"
-                :search="searchreedemao"
-                :mobile-breakpoint="100"
-                :items-per-page="5"
-                :footer-props="{
-                    'items-per-page-text': '',
-                }"
-                >
-                </v-data-table>
-            </v-card>
-        </v-tab-item>
+                    <v-data-table
+                    :headers="headersreedemao"
+                    :items="data_reedemao"
+                    :search="searchreedemao"
+                    :mobile-breakpoint="100"
+                    :items-per-page="5"
+                    :footer-props="{
+                        'items-per-page-text': '',
+                    }"
+                    >
+                    </v-data-table>
+                </v-card>
+            </v-tab-item>
         </v-tabs-items>
     </v-container>
 </template>
@@ -115,17 +117,15 @@ export default {
     data:[],
     searchao:'',
     headers: [
-        { text: 'Nama CS', sortable: true, value: 'name', },
+        { text: 'Nama AO', sortable: true, value: 'nama_user', },
         { text: 'Produk', value: 'produk', sortable: true, },
         { text: 'Point', value: 'point', sortable: false, },
-        { text: 'NOA', value: 'noa', sortable: false, },
-        { text: 'Nominal', value: 'nominal', sortable: false, },
         { text: 'Tanggal', value: 'tanggal', sortable: true, },
         ],
     data_ao: [],
     data_reedemao: [],
     headersreedemao: [
-        { text: 'Nama Mitra', sortable: true, value: 'name', },
+        { text: 'Nama Mitra', sortable: true, value: 'nama_user', },
         { text: 'Produk', value: 'produk', sortable: true, },
         { text: 'Produk Reedem', value: 'produk_reedem', sortable: false, },
         { text: 'Qty', value: 'qty', sortable: false, },

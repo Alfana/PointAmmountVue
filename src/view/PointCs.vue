@@ -27,7 +27,7 @@
             class="mitracard" 
             shaped
             height="70"
-            @click="detailcs(item.id_user, item.name)"
+            @click="detailcs(item.id_user, item.name, item.akses)"
             >
             <v-list-item >
             <v-list-item-avatar color="iconbawah">
@@ -56,10 +56,11 @@
 
     }),
     methods :{      
-        detailcs(idcs, namacs){
+        detailcs(idcs, namacs, jabatan){
             localStorage.id_cs = idcs
-            // localStorage.tabledetail = "cs"
+            localStorage.tabledetail = "cs"
             localStorage.namacs = namacs
+            localStorage.redjab = jabatan
             this.$router.push('/detcs')
          },
         getpointcs() {

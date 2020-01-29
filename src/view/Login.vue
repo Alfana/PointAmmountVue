@@ -107,10 +107,10 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail tidak valid',
       ],
       lastname: '',
-      // passwordRules: [
-      //   v => !!v || 'Password harus diisi',
-      //   v => v.length >= 8 || 'Password harus lebih dari 8 karakter',
-      // ],
+      passwordRules: [
+        v => !!v || 'Password harus diisi',
+        v => v.length >= 1 || 'Password harus lebih dari 1 karakter',
+      ],
       form:{
         email:'',
         password:''
@@ -131,7 +131,6 @@ export default {
     }).then((res)=>{
       if (res.status==200) {
         if (res.data.status==1) {
-
           let user = res.data.data;//eslint-disable-line
           this.$session.start()
           this.$session.set('api_token', user.api_token)
@@ -141,12 +140,30 @@ export default {
           localStorage.akses = user.akses
           localStorage.name = user.name
           localStorage.unit = user.unit
-          localStorage.id_officer = user.id_officer
+          // localStorage.id_officer = user.id_officer
           localStorage.popUp = 'belum'
-          location.reload();
-          // window.open('http://www.google.com')
-          // this.$router.push('home')
-          
+          location.reload();          
+        }else if(res.data.status==2){
+          // console.log(res.data.data[0].nama_user)//eslint-disable-line
+          if (res.data.data[0].level !== 2) {
+            let user = res.data.data[0];//eslint-disable-line
+            this.$session.start()
+            localStorage.sess = this.$session.get('session-id')
+            localStorage.id = user.no_user
+            if (user.level == 3) {
+              localStorage.akses = 4
+              localStorage.unit = user.nama_kcp
+            }else{              
+              localStorage.akses = 5
+              localStorage.unit = "CABANG CIANJUR"
+            }
+            localStorage.name = user.nama_user
+            localStorage.popUp = 'belum'
+            location.reload();
+          }else{
+            this.lgFail = true
+            this.load = false
+          }          
         }else{
           this.lgFail = true
           this.load = false
